@@ -2,9 +2,18 @@
 
 A modern, real-time chat application built with React and Firebase, supporting instant messaging, user authentication, and a sleek, responsive UI.
 
-**Live Demo:** [real-time-chat-application-m5c1.onrender.com](https://real-time-chat-application-m5c1.onrender.com)
+**Live Demo:** [real-time-chat-application-m5c1.onrender.com](https://realtimechatapplication-9f5q.onrender.com)
 
 ---
+
+## Screenshots
+![Screenshot 2025-07-08 174613](https://github.com/user-attachments/assets/0e45b0f0-c7e5-4125-bce8-6272ac8ed46c)
+
+![Screenshot 2025-07-08 173030](https://github.com/user-attachments/assets/ddb5aeed-2fa0-4e47-a721-c2def8497de7)
+
+![Screenshot 2025-07-08 173253](https://github.com/user-attachments/assets/a440804f-dc20-4879-bdf1-4caf81637c82)
+
+
 
 ## 🚀 Features
 
