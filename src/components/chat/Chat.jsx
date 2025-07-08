@@ -21,7 +21,8 @@ const Chat = () => {
   const [isSpeaker, setIsSpeaker] = useState(false);
   const [isRinging, setIsRinging] = useState(false); // New state for ringing status
 
-  const { chatId, user, isCurrentUserBlocked, isReceiverBlocked } = useChatStore();
+  const { chatId, user, isCurrentUserBlocked, isReceiverBlocked } =
+    useChatStore();
   const { currentUser } = useUserStore();
 
   const videoRef = useRef(null);
@@ -71,11 +72,17 @@ const Chat = () => {
       const chatDocRef = doc(db, "chats", chatId);
 
       if (img.file) {
-        const storageRef = ref(storage, `chatImages/${new Date().getTime()}_${img.file.name}`);
+        const storageRef = ref(
+          storage,
+          `chatImages/${new Date().getTime()}_${img.file.name}`
+        );
         const uploadResult = await uploadBytes(storageRef, img.file);
         imgUrl = await getDownloadURL(uploadResult.ref);
       } else if (capturedImage) {
-        const storageRef = ref(storage, `chatImages/${new Date().getTime()}_captured.png`);
+        const storageRef = ref(
+          storage,
+          `chatImages/${new Date().getTime()}_captured.png`
+        );
         const uploadResult = await uploadBytes(
           storageRef,
           await (await fetch(capturedImage)).blob()
@@ -221,36 +228,36 @@ const Chat = () => {
     <div className="chat">
       <div className="top">
         <div className="user">
-          <img src="./avatar.png" alt="" />
+          <img src="/avatar.png" alt="" />
           <div className="texts">
             <span>{user?.username}</span>
           </div>
         </div>
         <div className="icons">
-          <img
-            src="./phone.png"
-            alt="Voice Call"
-            onClick={startVoiceCall}
-          />
-          <img src="./video.png" alt="" />
-          <img src="./info.png" alt="" />
+          <img src="/phone.png" alt="Voice Call" onClick={startVoiceCall} />
+          <img src="/video.png" alt="" />
+          <img src="/info.png" alt="" />
         </div>
       </div>
       <div className="center">
         {chat?.messages?.map((message) => (
           <div
-            className={message.senderId === currentUser?.id ? "message own" : "message"}
+            className={
+              message.senderId === currentUser?.id ? "message own" : "message"
+            }
             key={message?.createdAt}
             onClick={() => handleMessageClick(message)} // Add onClick event here
           >
             <div className="texts">
-              {message.img && <img src={message.img} alt="Message Attachment" />}
+              {message.img && (
+                <img src={message.img} alt="Message Attachment" />
+              )}
               <p>{message.text}</p>
               <div className="reactions">
                 {message.reactions &&
-                  Object.entries(message.reactions).map(([userId, reaction]) => (
-                    <span key={userId}>{reaction}</span>
-                  ))}
+                  Object.entries(message.reactions).map(
+                    ([userId, reaction]) => <span key={userId}>{reaction}</span>
+                  )}
               </div>
             </div>
           </div>
@@ -283,7 +290,7 @@ const Chat = () => {
       {isVoiceCallActive && (
         <div className="voice-call-container active">
           <div className="call-info">
-            <img src="./avatar.png" alt="User Avatar" />
+            <img src="/avatar.png" alt="User Avatar" />
             <span>{user?.username}</span>
           </div>
           <div className="call-actions">
@@ -300,7 +307,7 @@ const Chat = () => {
               onClick={toggleSpeaker}
             />
             <div className="end-call" onClick={endVoiceCall}>
-              <img src="./end-call.png" alt="End Call" />
+              <img src="/end-call.png" alt="End Call" />
             </div>
           </div>
         </div>
@@ -313,7 +320,9 @@ const Chat = () => {
           <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
           <div className="controls">
             <button onClick={captureImage}>Capture</button>
-            <button className="close" onClick={closeCamera}>Close</button>
+            <button className="close" onClick={closeCamera}>
+              Close
+            </button>
           </div>
         </div>
       )}
@@ -321,11 +330,16 @@ const Chat = () => {
       <div className="bottom">
         <div className="icons">
           <label htmlFor="file">
-            <img src="./img.png" alt="" />
+            <img src="/img.png" alt="" />
           </label>
-          <input type="file" id="file" style={{ display: "none" }} onChange={handleImg} />
-          <img src="./camera.png" alt="" onClick={openCamera} />
-          <img src="./mic.png" alt="" />
+          <input
+            type="file"
+            id="file"
+            style={{ display: "none" }}
+            onChange={handleImg}
+          />
+          <img src="/camera.png" alt="" onClick={openCamera} />
+          <img src="/mic.png" alt="" />
         </div>
         <input
           type="text"
@@ -339,7 +353,11 @@ const Chat = () => {
           disabled={isCurrentUserBlocked || isReceiverBlocked}
         />
         <div className="emoji">
-          <img src="./emoji.png" alt="" onClick={() => setOpen((prev) => !prev)} />
+          <img
+            src="/emoji.png"
+            alt=""
+            onClick={() => setOpen((prev) => !prev)}
+          />
           {open && (
             <div className="picker">
               <EmojiPicker onEmojiClick={handleEmoji} />

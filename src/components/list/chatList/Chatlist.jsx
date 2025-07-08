@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import './chatList.css';
-import AddUser from './addUser/AddUser';
-import { useUserStore } from '../../../lib/userStore';
-import { doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore';
-import { db } from '../../../lib/firebase';
-import { useChatStore } from '../../../lib/chatStore';
+import React, { useEffect, useState } from "react";
+import "./chatList.css";
+import AddUser from "./addUser/AddUser";
+import { useUserStore } from "../../../lib/userStore";
+import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
+import { db } from "../../../lib/firebase";
+import { useChatStore } from "../../../lib/chatStore";
 
 const Chatlist = () => {
   const [chats, setChats] = useState([]);
@@ -15,29 +15,32 @@ const Chatlist = () => {
   const { chatId, changeChat } = useChatStore();
 
   useEffect(() => {
-    const unsub = onSnapshot(doc(db, "userchats", currentUser.id), async (res) => {
-      if (res.exists()) {
-        const items = res.data().chats || [];
-        if (items.length === 0) {
+    const unsub = onSnapshot(
+      doc(db, "userchats", currentUser.id),
+      async (res) => {
+        if (res.exists()) {
+          const items = res.data().chats || [];
+          if (items.length === 0) {
+            console.log("No chats found");
+            setChats([]);
+            return;
+          }
+
+          const promises = items.map(async (item) => {
+            const userDocRef = doc(db, "users", item.receiverId);
+            const userDocSnap = await getDoc(userDocRef);
+            const user = userDocSnap.exists() ? userDocSnap.data() : null;
+            return { ...item, user };
+          });
+
+          const chatData = await Promise.all(promises);
+          setChats(chatData.sort((a, b) => b.updatedAt - a.updatedAt));
+        } else {
           console.log("No chats found");
           setChats([]);
-          return;
         }
-
-        const promises = items.map(async (item) => {
-          const userDocRef = doc(db, "users", item.receiverId);
-          const userDocSnap = await getDoc(userDocRef);
-          const user = userDocSnap.exists() ? userDocSnap.data() : null;
-          return { ...item, user };
-        });
-
-        const chatData = await Promise.all(promises);
-        setChats(chatData.sort((a, b) => b.updatedAt - a.updatedAt));
-      } else {
-        console.log("No chats found");
-        setChats([]);
       }
-    });
+    );
 
     return () => {
       unsub();
@@ -50,7 +53,9 @@ const Chatlist = () => {
       return rest;
     });
 
-    const chatIndex = userChats.findIndex((item) => item.chatId === chat.chatId);
+    const chatIndex = userChats.findIndex(
+      (item) => item.chatId === chat.chatId
+    );
     if (chatIndex !== -1) {
       userChats[chatIndex].isSeen = true;
 
@@ -60,7 +65,9 @@ const Chatlist = () => {
 
       if (chatDocSnap.exists()) {
         const chatData = chatDocSnap.data();
-        const lastMessage = chatData.messages?.[chatData.messages.length - 1]?.text || "No messages yet";
+        const lastMessage =
+          chatData.messages?.[chatData.messages.length - 1]?.text ||
+          "No messages yet";
         userChats[chatIndex].lastMessage = lastMessage;
       }
 
@@ -77,13 +84,15 @@ const Chatlist = () => {
     }
   };
 
-  const filteredChats = chats.filter((c) => c.user.username.toLowerCase().includes(input.toLowerCase()));
+  const filteredChats = chats.filter((c) =>
+    c.user.username.toLowerCase().includes(input.toLowerCase())
+  );
 
   return (
     <div className="chatList">
       <div className="search">
         <div className="searchBar">
-          <img src="./search.png" alt="Search Icon" />
+          <img src="/search.png" alt="Search Icon" />
           <input
             type="text"
             placeholder="Search"
@@ -91,7 +100,7 @@ const Chatlist = () => {
           />
         </div>
         <img
-          src={addMode ? './minus.png' : './plus.png'}
+          src={addMode ? "./minus.png" : "./plus.png"}
           alt="Toggle Add Mode"
           className="add"
           onClick={() => setAddMode((prev) => !prev)}
@@ -104,9 +113,13 @@ const Chatlist = () => {
           onClick={() => handleSelect(chat)}
           style={{ backgroundColor: chat?.isSeen ? "transparent" : "#5183fe" }}
         >
-          <img src="./avatar.png" alt="Avatar" />
+          <img src="/avatar.png" alt="Avatar" />
           <div className="texts">
-            <span>{chat.user.blocked.includes(currentUser.id) ? "User" : chat.user.username}</span>
+            <span>
+              {chat.user.blocked.includes(currentUser.id)
+                ? "User"
+                : chat.user.username}
+            </span>
             <p>{chat.lastMessage || "No messages yet"}</p>
           </div>
         </div>
