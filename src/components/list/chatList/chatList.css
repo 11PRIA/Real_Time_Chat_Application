@@ -71,3 +71,60 @@
         }
     }
 }
+
+@media (max-width: 900px) {
+  .chatList .search {
+    gap: 10px;
+    padding: 10px;
+  }
+  .chatList .search .searchBar {
+    gap: 10px;
+    padding: 6px;
+  }
+  .chatList .search .add {
+    width: 28px;
+    height: 28px;
+    padding: 6px;
+  }
+  .chatList .item {
+    gap: 10px;
+    padding: 10px;
+  }
+  .chatList .item img {
+    width: 36px;
+    height: 36px;
+  }
+}
+@media (max-width: 600px) {
+  .chatList .search {
+    flex-direction: column;
+    gap: 6px;
+    padding: 5px;
+  }
+  .chatList .search .searchBar {
+    gap: 6px;
+    padding: 4px;
+  }
+  .chatList .search .add {
+    width: 22px;
+    height: 22px;
+    padding: 3px;
+  }
+  .chatList .item {
+    gap: 6px;
+    padding: 5px;
+  }
+  .chatList .item img {
+    width: 24px;
+    height: 24px;
+  }
+  .chatList .item .texts {
+    gap: 4px;
+  }
+  .chatList .item .texts span {
+    font-size: 13px;
+  }
+  .chatList .item .texts p {
+    font-size: 11px;
+  }
+}

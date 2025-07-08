@@ -26,3 +26,38 @@
     }
 }
 }
+
+@media (max-width: 900px) {
+  .userInfo {
+    padding: 10px;
+  }
+  .userInfo .user img {
+    width: 32px;
+    height: 32px;
+  }
+  .userInfo .icons {
+    gap: 10px;
+  }
+  .userInfo .icons img {
+    width: 16px;
+    height: 16px;
+  }
+}
+@media (max-width: 600px) {
+  .userInfo {
+    padding: 4px;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .userInfo .user img {
+    width: 20px;
+    height: 20px;
+  }
+  .userInfo .icons {
+    gap: 4px;
+  }
+  .userInfo .icons img {
+    width: 12px;
+    height: 12px;
+  }
+}

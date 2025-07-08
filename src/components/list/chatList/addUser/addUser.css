@@ -61,3 +61,65 @@
         }
     }
 }
+
+@media (max-width: 900px) {
+  .addUser {
+    padding: 15px;
+    border-radius: 8px;
+  }
+  .addUser form {
+    gap: 10px;
+  }
+  .addUser form input,
+  .addUser form button {
+    padding: 12px;
+    font-size: 15px;
+  }
+  .addUser .user {
+    margin-top: 20px;
+    gap: 10px;
+  }
+  .addUser .user .detail img {
+    width: 32px;
+    height: 32px;
+  }
+  .addUser .user button {
+    padding: 6px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 600px) {
+  .addUser {
+    width: 98vw;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    padding: 6px;
+    border-radius: 0;
+    top: 2vw;
+    left: 1vw;
+    right: 1vw;
+    bottom: 2vw;
+  }
+  .addUser form {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .addUser form input,
+  .addUser form button {
+    padding: 8px;
+    font-size: 13px;
+  }
+  .addUser .user {
+    margin-top: 10px;
+    gap: 6px;
+  }
+  .addUser .user .detail img {
+    width: 20px;
+    height: 20px;
+  }
+  .addUser .user button {
+    padding: 4px;
+    font-size: 12px;
+  }
+}

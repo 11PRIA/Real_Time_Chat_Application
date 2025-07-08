@@ -328,3 +328,86 @@ canvas {
     font-size: 16px;
     z-index: 999;
 }
+
+@media (max-width: 900px) {
+    .chat {
+        .top {
+            padding: 10px;
+            .user img {
+                width: 40px;
+                height: 40px;
+            }
+            .texts span {
+                font-size: 16px;
+            }
+        }
+        .center {
+            padding: 10px;
+            .message {
+                max-width: 90%;
+                gap: 10px;
+            }
+        }
+        .bottom {
+            padding: 5px 10px;
+            input {
+                font-size: 14px;
+                padding: 10px;
+            }
+            .sendButton {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .chat {
+        .top {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            .user img {
+                width: 32px;
+                height: 32px;
+            }
+            .texts span {
+                font-size: 14px;
+            }
+        }
+        .center {
+            padding: 5px;
+            gap: 10px;
+            .message {
+                max-width: 100%;
+                gap: 5px;
+                flex-direction: column;
+                align-items: flex-start;
+                img {
+                    width: 24px;
+                    height: 24px;
+                }
+                .texts img {
+                    height: 150px;
+                }
+                .texts p {
+                    padding: 10px;
+                    font-size: 13px;
+                }
+            }
+        }
+        .bottom {
+            padding: 3px 5px;
+            gap: 5px;
+            input {
+                font-size: 12px;
+                padding: 8px;
+            }
+            .sendButton {
+                font-size: 12px;
+                padding: 6px 8px;
+            }
+        }
+    }
+}

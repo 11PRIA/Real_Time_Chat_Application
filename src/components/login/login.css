@@ -23,8 +23,9 @@
                 padding: 20px;
                 border: none;
                 outline: none;
-                background-color: rgba(17,25,40,0.6);
-                color: white;
+                background: rgba(40,60,90,0.2);
+                color: #fff;
+                border: 1px solid #b0b0b0;
                 border-radius: 5px;
             }
 
@@ -67,4 +68,47 @@
         width: 2px;
         background-color: #dddddd35;
     }
+}
+
+@media (max-width: 900px) {
+  .login {
+    gap: 30px;
+  }
+  .login .item form input,
+  .login .item form button {
+    padding: 12px;
+    font-size: 15px;
+  }
+  .login .item form label img {
+    width: 32px;
+    height: 32px;
+  }
+  .login .separator {
+    height: 60%;
+  }
+}
+@media (max-width: 600px) {
+  .login {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .login .item {
+    gap: 10px;
+  }
+  .login .item form {
+    gap: 10px;
+  }
+  .login .item form input,
+  .login .item form button {
+    padding: 8px;
+    font-size: 13px;
+  }
+  .login .item form label img {
+    width: 20px;
+    height: 20px;
+  }
+  .login .separator {
+    display: none;
+  }
 }

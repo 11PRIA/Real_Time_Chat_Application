@@ -3,3 +3,13 @@
     display: flex;
     flex-direction: column;
 }
+@media (max-width: 900px) {
+  .list {
+    padding: 0 5px;
+  }
+}
+@media (max-width: 600px) {
+  .list {
+    padding: 0 2px;
+  }
+}
