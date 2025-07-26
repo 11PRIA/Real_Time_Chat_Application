@@ -29,14 +29,6 @@ A modern, real-time chat application built with React and Firebase, supporting i
 
 ---
 
-## 🖼️ Screenshots
-
-> _Add your own screenshots in the `public/` folder and reference them below:_
-
-![Chat UI](public/img.png)
-
----
-
 ## 🛠️ Tech Stack
 
 - **Frontend:** React, CSS
